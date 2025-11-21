@@ -1,7 +1,7 @@
 class FileCommands:
     """Handles file-related commands"""
 
-    def __inti__(self, session):
+    def __init__(self, session):
         self.session = session
         # Simple VFS for now
         self.vfs = {

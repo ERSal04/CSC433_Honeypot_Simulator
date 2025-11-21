@@ -28,7 +28,7 @@ class CommandProcessor:
         else:
             return f"-bash: {cmd}: command not found"
         
-    def _fake_histor(self):
+    def _fake_history(self):
         """Return fake command history"""
         fake_history = [
             "1 ls -la",

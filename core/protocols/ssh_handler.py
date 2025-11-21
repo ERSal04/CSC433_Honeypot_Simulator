@@ -1,5 +1,6 @@
+import datetime
 from core.session_manager import HoneypotSession
-from core.emulation.command_processor import CommandProcessor
+from core.emulation.commands.command_processor import CommandProcessor
 
 class SSHHandler:
     """Handles SSH protocol emulation"""
@@ -25,7 +26,7 @@ class SSHHandler:
         
         self.session.log_event("CONNECTION_CLOSE", {
             "commands_executed": self.session.command_count,
-            "duration": (self.session.start_time).total_seconds()
+            "duration": (datetime.datetime.now() - self.session.start_time).total_seconds()
         })
         self.session.client.close()
 
@@ -36,12 +37,12 @@ class SSHHandler:
 
         while attempts < max_attempts:
             self.session.send("login as: ")
-            username = self.session.recieve_line()
+            username = self.session.receive_line()
             if not username:
                 return False
 
             self.session.send(f"{username}@honeypot's password: ")
-            password = self.session.recieve_line()
+            password = self.session.receive_line()
             if not password:
                 return False
             
@@ -55,7 +56,7 @@ class SSHHandler:
             attempts += 1
 
             # Accept after 2 failed attempts OR weak credentials
-            if attempts >= 2 or self._is_weak_credentials(username, password):
+            if attempts >= 2 or self._is_weak_credential(username, password):
                 self.session.username = username
                 self.session.authenticated = True
                 self.session.log_event("AUTH_SUCCESS", {
@@ -104,7 +105,7 @@ Last login: Wed Nov 15 14:32:11 2025 from 10.0.0.5
             self.session.send(prompt)
 
             # Get command
-            command = self.session.recieve_line()
+            command = self.session.receive_line()
             if not command:
                 break
             

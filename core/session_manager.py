@@ -29,25 +29,27 @@ class HoneypotSession:
         }
 
         # Write to main log file
-        with open("data/logs.honey.log", "a") as f:
+        with open("data/logs/honey.log", "a") as f:
             f.write(json.dumps(event) + "\n")
 
         # Also write to session-specific log
-        session_log = f"data/logs/session/{self.session_id}.json"
+        session_log = f"data/logs/sessions/{self.session_id}.json"
         with open(session_log, "a") as f:
             f.write(json.dumps(event) + "\n")
 
-    def send(self, massage):
+    def send(self, message):
         """Safely send data to client"""
         try:
             if isinstance(message, str):
-                message = message.encode()
+                message = message.encode('utf-8')
+            if not isinstance(message, bytes):
+                message = str(message).encode('utf-8')
             self.client.send(message + b"\r\n")
         except Exception as e:
             self.log_event("SEND_ERROR", {"error": str(e)})
         
-    def recieve_line(self):
-        """Recieve a line of input from attacker"""
+    def receive_line(self):
+        """Receive a line of input from attacker"""
         buffer = b""
         try:
             self.client.settimeout(300) # 5 minute timeout
