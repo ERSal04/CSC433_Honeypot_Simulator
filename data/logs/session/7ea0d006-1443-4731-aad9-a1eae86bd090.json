@@ -1,2 +1,0 @@
-{"timestamp": "2025-11-20T17:28:25.816112", "session_id": "7ea0d006-1443-4731-aad9-a1eae86bd090", "ip": "127.0.0.1", "port": 65059, "event_type": "CONNECTION_OPEN", "data": {"protocol": "SSH", "banner": "OpenSSH_8.2p1"}, "session_duration": 0.00985}
-{"timestamp": "2025-11-20T17:28:25.953075", "session_id": "7ea0d006-1443-4731-aad9-a1eae86bd090", "ip": "127.0.0.1", "port": 65059, "event_type": "SEND_ERROR", "data": {"error": "cannot access local variable 'message' where it is not associated with a value"}, "session_duration": 0.146804}
