@@ -28,4 +28,13 @@ class CommandProcessor:
         else:
             return f"-bash: {cmd}: command not found"
         
-    
+    def _fake_histor(self):
+        """Return fake command history"""
+        fake_history = [
+            "1 ls -la",
+            "2 cd /var/www",
+            "3 cat config.php",
+            "4 wget http://update.example.com/patch.sh",
+            "5 history"
+        ]
+        return "\n".join(fake_history)

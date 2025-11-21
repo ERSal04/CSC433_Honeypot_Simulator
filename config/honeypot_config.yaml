@@ -1,0 +1,31 @@
+server:
+  bind_ip: "0.0.0.0"
+  ports:
+    ssh: 2222
+    telnet: 2323
+    http: 8080
+  
+emulation:
+  hostname: "ubuntu-server"
+  os_version: "Ubuntu 20.04.5 LTS"
+  ssh_version: "OpenSSH_8.2p1"
+  max_session_duration: 3600  # seconds
+  idle_timeout: 300
+
+logging:
+  log_file: "data/logs/honey.log"
+  log_level: "INFO"
+  enable_pcap: true
+  pcap_directory: "data/logs/pcap"
+
+alerting:
+  enable_console: true
+  enable_discord: true
+  enable_slack: false
+  discord_webhook: "${DISCORD_WEBHOOK_URL}"
+  slack_webhook: "${SLACK_WEBHOOK_URL}"
+  
+intelligence:
+  enable_geoip: true
+  enable_abusedb: true
+  abusedb_api_key: "${ABUSEDB_API_KEY}"
