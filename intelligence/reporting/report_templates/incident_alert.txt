@@ -1,0 +1,23 @@
+WARNING: SECURITY INCIDENT DETECTED
+
+Time: {timestamp}
+Severity: {severity}
+Type: {event_type}
+
+Source Details:
+
+IP Address: {src_ip}
+Country: {country}
+ISP/ASN: {asn}
+
+Attack Details:
+
+Payload: {payload}
+Protocol: {protocol}
+
+System Status:
+
+Action Taken: Logged & Monitored
+
+--
+Watchtower Automated Defense System
