@@ -1,1 +1,0 @@
-{"timestamp": "2025-11-20T17:36:57.401548", "session_id": "6fbd73b1-834e-4e55-9eff-27ff8beaee70", "ip": "127.0.0.1", "port": 58595, "event_type": "CONNECTION_OPEN", "data": {"protocol": "SSH", "banner": "OpenSSH_8.2p1"}, "session_duration": 0.010495}

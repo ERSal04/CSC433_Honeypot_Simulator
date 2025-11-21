@@ -23,3 +23,10 @@ peewee==3.17.0            # ORM for SQLite
 # Utilities
 python-dotenv==1.0.0      # Environment variables
 colorama==0.4.6           # Colored terminal output
+
+eventlet
+python-socketio
+watchdog
+playsound
+jinja2
+pandas
