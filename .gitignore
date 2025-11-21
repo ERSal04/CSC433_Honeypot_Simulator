@@ -1,4 +1,4 @@
 data/database
 data/logs
-__pycache__
+__pycache__/
 .env
