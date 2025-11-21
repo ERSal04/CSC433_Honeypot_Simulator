@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watchtower // Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><i class="fa-solid fa-shield-halved"></i> WATCHTOWER</div>
+        <ul class="nav-links">
+            <li><a href="/"><i class="fa-solid fa-terminal"></i> Live Feed</a></li>
+            <li><a href="/map"><i class="fa-solid fa-map"></i> Threat Map</a></li>
+            <li class="active"><a href="/analytics"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <header>
+            <h1><i class="fa-solid fa-chart-pie"></i> Threat Analysis</h1>
+        </header>
+
+        <div class="kpi-grid">
+            <div class="card" style="width: 100%;">
+                <h3>Attacks by Protocol</h3>
+                <canvas id="protocolChart"></canvas>
+            </div>
+            <div class="card" style="width: 100%;">
+                <h3>Traffic Volume (Last 24h)</h3>
+                <canvas id="trafficChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Placeholder Charts using Chart.js
+        const ctxProto = document.getElementById('protocolChart').getContext('2d');
+        new Chart(ctxProto, {
+            type: 'doughnut',
+            data: {
+                labels: ['SSH', 'Telnet', 'HTTP', 'Other'],
+                datasets: [{
+                    data: [120, 45, 30, 10], // Replace with real API data later
+                    backgroundColor: ['#e74c3c', '#f1c40f', '#3498db', '#95a5a6'],
+                    borderWidth: 0
+                }]
+            },
+            options: { plugins: { legend: { labels: { color: 'white' } } } }
+        });
+
+        const ctxTraffic = document.getElementById('trafficChart').getContext('2d');
+        new Chart(ctxTraffic, {
+            type: 'line',
+            data: {
+                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                datasets: [{
+                    label: 'Attack Events',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderColor: '#2ecc71',
+                    tension: 0.1
+                }]
+            },
+            options: { scales: { y: { ticks: { color: 'white' } }, x: { ticks: { color: 'white' } } } }
+        });
+    </script>
+</body>
+</html>
