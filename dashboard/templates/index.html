@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watchtower // Live Monitor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Socket.IO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-shield-halved"></i> WATCHTOWER
+        </div>
+        <ul class="nav-links">
+            <li class="active"><a href="/"><i class="fa-solid fa-terminal"></i> Live Feed</a></li>
+            <li><a href="/map"><i class="fa-solid fa-map"></i> Threat Map</a></li>
+            <li><a href="/analytics"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+            <li><a href="/api/stats/summary" target="_blank"><i class="fa-solid fa-database"></i> JSON API</a></li>
+        </ul>
+        <div class="status-indicator">
+            <span class="dot online"></span> System Online
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+        <header>
+            <h1><i class="fa-solid fa-satellite-dish"></i> Live Intelligence Feed</h1>
+        </header>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="card">
+                <h3>Total Events</h3>
+                <p id="kpi-total">0</p>
+            </div>
+            <div class="card">
+                <h3>Unique Attackers</h3>
+                <p id="kpi-unique">0</p>
+            </div>
+            <div class="card">
+                <h3>Top Source</h3>
+                <p id="kpi-top-country">--</p>
+            </div>
+        </div>
+
+        <!-- Live Logs -->
+        <div class="log-container">
+            <div class="log-header">
+                <span>TIMESTAMP</span>
+                <span>SEVERITY</span>
+                <span>SOURCE IP</span>
+                <span>LOCATION</span>
+                <span>PAYLOAD</span>
+            </div>
+            <div id="log-feed" class="log-feed">
+                <!-- Logs will be injected here by live_feed.js -->
+                <div class="log-entry info">
+                    <span class="timestamp">--:--:--</span>
+                    <span class="severity">[INFO]</span>
+                    <span class="ip">System</span>
+                    <span class="location">Local</span>
+                    <span class="payload">Waiting for data stream...</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Load Custom Scripts -->
+    <script src="{{ url_for('static', filename='js/live_feed.js') }}"></script>
+</body>
+</html>

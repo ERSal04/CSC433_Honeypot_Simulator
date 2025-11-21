@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watchtower // Sessions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><i class="fa-solid fa-shield-halved"></i> WATCHTOWER</div>
+        <ul class="nav-links">
+            <li><a href="/"><i class="fa-solid fa-terminal"></i> Live Feed</a></li>
+            <li><a href="/map"><i class="fa-solid fa-map"></i> Threat Map</a></li>
+            <li><a href="/analytics"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <header>
+            <h1><i class="fa-solid fa-users-viewfinder"></i> Session Explorer</h1>
+        </header>
+
+        <div class="log-container">
+            <p style="padding: 10px; color: #aaa;">Select a session to replay commands.</p>
+            <div class="log-header">
+                <span>SESSION ID</span>
+                <span>START TIME</span>
+                <span>IP ADDRESS</span>
+                <span>COMMANDS RUN</span>
+            </div>
+            <!-- Example Static Data -->
+            <div class="log-feed">
+                <div class="log-entry">
+                    <span class="timestamp">a1b2-c3d4</span>
+                    <span class="severity">10:42 AM</span>
+                    <span class="ip">192.168.1.55</span>
+                    <span class="payload">wget, ls, whoami</span>
+                </div>
+                <div class="log-entry">
+                    <span class="timestamp">e5f6-g7h8</span>
+                    <span class="severity">11:15 AM</span>
+                    <span class="ip">10.0.0.2</span>
+                    <span class="payload">rm -rf /</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
