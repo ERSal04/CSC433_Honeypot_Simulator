@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watchtower // Threat Map</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Leaflet CSS & JS (Required for Map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+    <style>
+        /* Map specific overrides */
+        #attackMap { height: 85vh; width: 100%; border-radius: 8px; border: 1px solid #333; }
+        .content { display: flex; flex-direction: column; height: 100vh; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><i class="fa-solid fa-shield-halved"></i> WATCHTOWER</div>
+        <ul class="nav-links">
+            <li><a href="/"><i class="fa-solid fa-terminal"></i> Live Feed</a></li>
+            <li class="active"><a href="/map"><i class="fa-solid fa-map"></i> Threat Map</a></li>
+            <li><a href="/analytics"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <header>
+            <h1><i class="fa-solid fa-earth-americas"></i> Global Threat Vector Map</h1>
+        </header>
+        
+        <div id="attackMap"></div>
+    </main>
+
+    <!-- Load Custom Map Script -->
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+</body>
+</html>
