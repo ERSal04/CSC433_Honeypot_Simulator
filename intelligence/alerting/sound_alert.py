@@ -1,15 +1,13 @@
 import os
+import platform
 import threading
 import logging
-from playsound import playsound
 
 class SoundAlert:
     def __init__(self, enabled=True):
         self.enabled = enabled
         self.logger = logging.getLogger("SoundAlert")
-        
-        # We use os.path.abspath to ensure Windows/Mac paths are handled correctly
-        # Assumes you run the script from the project root
+        # Get absolute path to the sound file
         self.sound_file = os.path.abspath("dashboard/static/sounds/alert.wav")
 
     def play_alarm(self):
@@ -20,15 +18,28 @@ class SoundAlert:
             return
             
         if not os.path.exists(self.sound_file):
-            self.logger.warning(f"Sound file not found at: {self.sound_file}")
+            # Only warn once to avoid log spam
             return
 
-        # We use a thread so the honeypot doesn't freeze while the sound plays
+        # Run in a thread so it doesn't freeze the dashboard
         t = threading.Thread(target=self._play_thread, daemon=True)
         t.start()
 
     def _play_thread(self):
+        system = platform.system()
         try:
-            playsound(self.sound_file)
+            if system == "Darwin":  # macOS
+                # 'afplay' is built into every Mac
+                os.system(f"afplay '{self.sound_file}'")
+            
+            elif system == "Windows":
+                # 'winsound' is built into Python on Windows
+                import winsound
+                winsound.PlaySound(self.sound_file, winsound.SND_FILENAME)
+                
+            elif system == "Linux":
+                # Try common linux players
+                os.system(f"aplay '{self.sound_file}' || paplay '{self.sound_file}'")
+                
         except Exception as e:
-            self.logger.error(f"Failed to play sound: {e}")
+                        self.logger.error(f"Failed to play sound: {e}")
