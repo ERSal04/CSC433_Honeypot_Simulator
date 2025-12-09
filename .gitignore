@@ -1,0 +1,4 @@
+data/database
+data/logs
+__pycache__/
+.env
